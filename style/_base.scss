@@ -7,6 +7,18 @@
     display: table;
 }
 
+h1 {
+    font-family: 'Comfortaa', cursive;
+}
+
+h2 {
+    font-family: 'Comfortaa', cursive;
+}
+
+h3 {
+    font-family: 'Comfortaa', cursive;
+}
+
 input {
     position: fixed;
     top: 20px;
@@ -92,6 +104,11 @@ button {
     cursor: pointer;
 }
 
+.varukorg {
+    color: yellow;
+    right: 100px;
+}
+
 span {    
     height: 4px;
     display: block;
@@ -112,4 +129,8 @@ button span:nth-child(2) {
     
     left: -3px;
     position: relative;
+}
+
+.produkter {
+    text-align: center;
 }
