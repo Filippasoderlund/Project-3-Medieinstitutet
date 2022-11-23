@@ -3,8 +3,6 @@
 
 Gränssnittet/sidans utseende ska vara intuitivt.
 Det ska gå att utföra hela beställningsförfarandet med hjälp av enbart tangentbordet (tillgängligt).
-Bredvid/i anslutning till varje munk ska det finnas knappar för att öka och minska antalet beställda munkar.
-Munkarna är hårdkodade i filen (de behöver inte komma från ett API, en databas eller JSON-fil)
 Produkterna ska gå att sortera utifrån pris
 När man tryckt på beställ-knappen så ska en bekräftelse-ruta visas med information om beställningen och leveranstid
 

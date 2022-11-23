@@ -135,45 +135,43 @@
             Rabattkod <input type="text"> <button>Använd</button>
         </label><br>
 
-
-
         <button class="hidden">Rensa Varukorg</button>
     </div>
 
     <div class="costumer-information">
         <h2>Kundinformation</h2>
         <label>
-            Förnamn: <input type="text"><br>
+            Förnamn: <input type="text" id="fname"><br>
         </label>
         <label>
-            Efternamn: <input type="text"><br>
+            Efternamn: <input type="text" id="lname">><br>
         </label>
         <label>
-            Adress (gata): <input type="text"><br>
+            Adress (gata): <input type="text" id="streat">><br>
         </label>
         <label>
-            Postnummer: <input type="number"><br>
+            Postnummer: <input type="number" id="postnumber">><br>
         </label>
         <label>
-            Postort: <input type="text"><br>
+            Postort: <input type="text" id="state">><br>
         </label>
         <label>
-            Ev. portkod: <input type="number"><br>
+            Ev. portkod: <input type="number" id="kode">><br>
         </label>
         <label>
-            Telefon: <input type="number"><br>
+            Telefon: <input type="number" id="number">><br>
         </label>
         <label>
-            E-postadress: <input type="email"><br>
+            E-postadress: <input type="email" id="email">><br>
         </label>
 
-        <button class="hidden">Rensa Kundinformation</button>
+        <button id="customerinfo" disabled>Rensa Kundinformation</button>
         
     </div>
 
     <div class="payment">
         <h2>Betaliningsalternativ</h2>
-
+        <button>Kort</button><button>Faktura</button>
         <button>Beställ munkar</button>
         
     </div>
