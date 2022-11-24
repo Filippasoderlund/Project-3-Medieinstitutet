@@ -5,32 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webbshop</title>
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="style/style.css,">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 <body>
     
-    <h1>Gottfrids Munkar</h1>
+    <h1>Gottfrids <br> Munkar</h1>
     
     <input type="checkbox" />
 
     <div class="menu">
  
-        <button>
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <button><i class="fa-regular fa-bars"></i></button>
 
-        <nav>
-            <ul>
-                <li>Produkter</li>
-                <li>Kontakta oss</li>
-                <li></li>
-            </ul>
-        </nav>
     </div>  
 
     <button class="basket">Varukorg</button>
@@ -169,11 +159,14 @@
         
     </div>
 
-    <div class="payment">
+    <div id="payment">
         <h2>Betaliningsalternativ</h2>
         <button>Kort</button><button>Faktura</button>
-        <button>Beställ munkar</button>
-        
+        <div id="card"></div>
+        <div id="bill"></div>
+
+        <button id="order" disabled>Beställ munkar</button>
+
     </div>
 
 

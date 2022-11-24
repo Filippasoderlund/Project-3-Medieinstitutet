@@ -55,8 +55,71 @@ const kodeField = document.querySelector('#kode');
 const numberField = document.querySelector('#number');
 const emailField = document.querySelector('#email');
 
-fnameField.addEventListener('change', checkName);
+let fnameIsOk = false;
+let lnameIsOk = false;
+let streatIsOk = false;
+let postnumberIsOk = false;
+let stateIsOk = false;
+let kodeIsOk = false;
+let numberIsOk = false;
+let emailIsOk = false;
+
+fnameField.addEventListener('change', checkFname);
+lnameField.addEventListener('change', checkLname);
+streatField.addEventListener('change', checkStreat);
+postnumberField.addEventListener('change', checkPostnumber);
+stateField.addEventListener('change', checkState);
+kodeField.addEventListener('change', checkKode);
+numberField.addEventListener('change', checkNumber);
+emailField.addEventListener('change', checkEmail);
+
+//function checkLname() {
+//  lnameIsOk = lnameField.value.indexOf(' ') > -1;
+//  activateGenerateButton();
+//}
+
+//function checkFname() {
+//  fnameIsOk = fnameField.value.indexOf(' ') > -1;
+//  activateGenerateButton();
+//}
+
+function activateGenerateButton() {
+  if (fnameIsOk && lnameIsOk && streatIsOk && postnumberIsOk && stateIsOk && kodeIsOk && numberIsOk && emailIsOk) {
+    generateButton.removeAttribute('disabled');
+    generateButton.addEventListener('click', printPrice);
+  } else {
+    generateButton.setAttribute('disabled', '');
+    generateButton.removeEventListener('click', printPrice);
+    priceTextField.textContent = '';
+  }
+}
 
 function checkName() {
     console.log(fnameField.value);
 }
+
+//Betalnings metod
+
+const contentBtn1 = document.querySelector('#card');
+const contentBtn2 = document.querySelector('#bill');
+
+contentBtn1.addEventListener('click', showContent1);
+contentBtn2.addEventListener('click', showContent2);
+
+function showContent1() {
+  document.querySelector('#payment').classList.add('orange');
+  document.querySelector('#card').classList.add('visible');
+  document.querySelector('#bill').classList.remove('visible');s
+}
+
+function showContent2() {
+  document.querySelector('#payment').classList.add('yellow');
+  document.querySelector('#card').classList.remove('visible');
+  document.querySelector('#bill').classList.add('visible');s
+}
+
+//beställnings bekräftelse
+
+//filtrering
+
+//specialregler
