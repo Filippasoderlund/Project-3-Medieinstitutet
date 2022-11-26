@@ -43,6 +43,43 @@ function updateDonutSum(donutElement) {
     console.log(sum + 'kr');
   }
 
+// summa munkar
+
+const donuts = [
+  {
+    name: 'Donut 1',
+    price: 10, 
+    rating: 4, 
+  },
+  {
+    name: 'Donut 2',
+    price: 15, 
+    rating: 4, 
+  },
+];
+
+const donutContainer = document.querySelector('#products');
+
+for (let i = 0; i < donuts.length; i++) {
+  donutContainer.innerHTML += `
+    <article class="donut">
+      
+      <h3>${donuts[i].name}</h3>
+      <span class="price">${donuts[i].price} kr</span> kr
+      <span class="amount">0</span> st<br>
+      <span class="sum">0</span> kr
+      <button class="subtract" data-id="${i}">-</button>
+      <button class="add" data-id="${i}">+</button>
+    </article>
+  `;
+}
+
+document.querySelectorAll('button.add').forEach((btn) => {
+  btn.addEventListener('click', updateDonutAmount);
+});
+
+
+
 //kundinfo
 
 const generateButton = document.querySelector('#customerinfo');
@@ -73,24 +110,54 @@ kodeField.addEventListener('change', checkKode);
 numberField.addEventListener('change', checkNumber);
 emailField.addEventListener('change', checkEmail);
 
-//function checkLname() {
-//  lnameIsOk = lnameField.value.indexOf(' ') > -1;
-//  activateGenerateButton();
-//}
+function checkEmail() {
+  emailIsOk = emailField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
 
-//function checkFname() {
-//  fnameIsOk = fnameField.value.indexOf(' ') > -1;
-//  activateGenerateButton();
-//}
+function checkNumber() {
+  numberIsOk = numberField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkKode() {
+  kodeIsOk = kodeField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkState() {
+  stateIsOk = stateField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkPostnumber() {
+  postnumberIsOk = postnumberField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkStreat() {
+  streatIsOk = streatField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkLname() {
+  lnameIsOk = lnameField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkFname() {
+  fnameIsOk = fnameField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
 
 function activateGenerateButton() {
   if (fnameIsOk && lnameIsOk && streatIsOk && postnumberIsOk && stateIsOk && kodeIsOk && numberIsOk && emailIsOk) {
     generateButton.removeAttribute('disabled');
-    generateButton.addEventListener('click', printPrice);
+  
   } else {
     generateButton.setAttribute('disabled', '');
-    generateButton.removeEventListener('click', printPrice);
-    priceTextField.textContent = '';
+    
+    
   }
 }
 
