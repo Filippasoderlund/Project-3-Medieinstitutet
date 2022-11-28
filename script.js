@@ -47,7 +47,7 @@ function updateDonutSum(donutElement) {
 
 const donuts = [
   {
-    img: './style/foto/donut1.png',
+    img: '/style/foto/donut1.png',
     name: 'Donut 1',
     price: 10, 
     amount: 0, 
