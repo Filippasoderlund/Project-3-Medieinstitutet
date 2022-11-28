@@ -1,3 +1,20 @@
+body {
+    display: flex;
+}
+
 .donut {
     display: flex;
+}
+
+
+.errorMessage{
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.products{
+    height: 80px;
+    text-align: center;
+    width: 100vw;
 }

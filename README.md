@@ -8,7 +8,6 @@ Beställningssammanfattning#
 Totalsumman ska uppdateras baserat på ändringar som sker i antal beställda munkar i realtid
 Det ska finnas en varukorgssammanställning som visar endast de munkar som har beställts. Denna ska alltså vara skild från själva beställningsformuläret. Se referensbilder längre ner.
 
-
 Gottfrids specialregler#
 På måndagar innan kl. 10 ges 10 % rabatt på hela beställningssumman. Detta visas i varukorgssammanställningen som en rad med texten "Måndagsrabatt: 10 % på hela beställningen".
 På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 tillkommer ett helgpåslag på 15 % på alla munkar. Detta ska inte framgå för kunden att munkarna är dyrare, utan priset ska bara vara högre i "utskriften" av munkarna.
@@ -17,16 +16,6 @@ Om kunden har beställt minst 10 munkar av samma sort, ska munkpriset för just 
 Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 Om kunden inte har lagt beställningen inom 15 minuter så ska beställningsformuläret tömmas/rensas och kunden ska meddelas att denne är för långsam.
 
-Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
-
-Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!
-
-Checkbox för godkännande av behandling av personuppgifter
-Checkbox för beställning av nyhetsbrev (ska vara iklickad som default)
-
-Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
-Felen ska markeras och kommuniceras tydligt (t.ex. ej enbart med röd färg, tag i beaktande a11y)
-
 Övrigt#
 Det ska ges någon from av visuell feedback på när varukorgens totalsumma uppdateras. Med detta menas exempelvis någon visuell förändring, såsom en färg-skiftning, storleksskiftning, eller motsv.
 
@@ -34,9 +23,7 @@ Städa knappar
 
 ***************************************************
 
-Ska betalsättsidorna ligga i html strukturen eller i js filen?
 
-Hur får jag igång css rätt?
 
 Få ut summan för varukorg.
 
@@ -48,3 +35,4 @@ Slutförköp bekräftelse
 
 Få in rabbater
 
+validera faktura ej kort

@@ -9,23 +9,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
 </head>
 <body>
     
-    <h1>Gottfrids <br> Munkar</h1>
-    
-    <input type="checkbox" />
+    <main>
+        <h1>Gottfrids <br> Munkar</h1>
 
-    <div class="menu">
- 
-        <button><i class="fa-regular fa-bars"></i></button>
-
-    </div>  
-
-    <button class="basket">Varukorg</button>
-
-    <div id="products">
+        <button class="basket">Varukorg</button><button>Meny</button>
+    </main>
+  
+    <div id="products" class="products" >
         <h2>Våra munkar</h2>
         <article id="donut1">
             <img src="/style/foto/donut1.png" alt="donut1" class="donut1" height="230"><br>
@@ -119,60 +113,115 @@
         </article>
     </div>
 
-    <div class="basket-view">
+    <div id="">
         <h2>Varukorg</h2>
-        <label>
-            Rabattkod <input type="text"> <button>Använd</button>
+        <div id="cartSum"></div>
+        <label for="discountCode">
+            <span>Rabattkod: </span>
+            <input type="text" id="discountCode" name="discountCode" />
         </label><br>
 
-        <button class="hidden">Rensa Varukorg</button>
+        <button>Rensa Varukorg</button>
     </div>
 
-    <div class="costumer-information">
-        <h2>Kundinformation</h2>
-        <label>
-            Förnamn: <input type="text" id="fname"><br>
-        </label>
-        <label>
-            Efternamn: <input type="text" id="lname">><br>
-        </label>
-        <label>
-            Adress (gata): <input type="text" id="streat">><br>
-        </label>
-        <label>
-            Postnummer: <input type="number" id="postnumber">><br>
-        </label>
-        <label>
-            Postort: <input type="text" id="state">><br>
-        </label>
-        <label>
-            Ev. portkod: <input type="number" id="kode">><br>
-        </label>
-        <label>
-            Telefon: <input type="number" id="number">><br>
-        </label>
-        <label>
-            E-postadress: <input type="email" id="email">><br>
-        </label>
+    <div id="cart"></div>
 
-        <button id="customerinfo" disabled>Rensa Kundinformation</button>
-        
+    <div class="costumer-information">
+
+        <h2>Kundinformation</h2>
+        <label for="">
+            <span>Förnamn</span>  
+            <span class="errorMessage" hidden>Ange ett giltig namn</span>
+            <input placeholder="Förnamn" required class="input_group" type="text" id="fname"> 
+        </label><br>
+        <label for="">
+            <span>Efternamn</span>  
+            <span class="errorMessage" hidden>Ange ett giltig efternamn</span>
+            <input placeholder="Efternamn" required class="input_group" type="text" id="lname">
+        </label><br>
+        <label for="">
+            <span>Gatuadress</span> 
+            <span class="errorMessage" hidden>Ange en giltig adress</span>
+            <input placeholder="Gata och nummer" required class="input_group" type="text" id="streat">
+        </label><br>
+        <label >
+        <label for="">
+            <span>Postnummer</span> 
+            <span class="errorMessage" hidden>Ange ett giltigt postnummer</span>
+            <input required class="input_group" type="text" id="postnumber">
+        </label><br>
+        <label for="">
+            <span>Postort</span> 
+            <span class="errorMessage" hidden>Ange en giltig postort</span>
+            <input placeholder="stad" required class="input_group" type="text" id="city">
+        </label><br>
+        <label for="">
+            <span>Portkod</span> 
+            <input placeholder="Ev. portkod" class="input_group" type="number" id="code">
+        </label><br>
+        <label for="">
+            <span>Telefonummer</span> 
+            <span class="errorMessage" hidden>Ange ett giltigt telefonummer</span>
+            <input id="number" placeholder="Telefonummer" class="input_group" type="number" >
+        </label><br>
+        <label for="">
+            <span>Mailadress</span> 
+            <span class="errorMessage" hidden>Ange en gilltig mailadress</span>
+            <input id="email" placeholder="E-post" class="input_group" type="text" >
+        </label><br>
     </div>
 
     <div id="payment">
-        <h2>Betaliningsalternativ</h2>
-        <button>Kort</button><button>Faktura</button>
-        <div id="card">
+        <h3>Betalsätt</h3>
+        <label for="">
+            <span>Kort</span> 
+            <input type="radio" id="card" name="waysToPay" value="creditcard">
+        </label>
+        <label for="">
+            <span>Faktura</span> 
+            <input type="radio" id="invoice" name="waysToPay" value="invoice"> 
+        </label> 
+        <br>
+        <div id="ssn" class="display-none">
+            <label for="">
+                <span>Personnummer</span> 
+                <span class="errorMessage" id="errorMessagePersonNR" hidden></span>
+                <input id="personNr" placeholder="YYMMDD0000" class="input_group" type="text" >
+            </label>
+        </div>
+        <div id="cardpay" class="display-none">
+            <label for="">
+                <span>Kortnummer</span> 
+                <span class="errorMessage" id="errorMessageCardNR" hidden></span>
+                <input placeholder="0000000000000000" class="input_group" type="number" id="cardnr">
+            </label><br>
+            <label for="">
+                <span>mån/år</span> 
+                <span class="errorMessage" id="errorMessageDateyear" hidden></span>
+                <input placeholder="MM/YY" class="input_group" type="number" id="dateyear">
+            </label><br>
+            <label for="">
+                <span>CVC</span> 
+                <span class="errorMessage" id="errorMessageCVC" hidden></span>
+                <input placeholder="000" class="input_group" type="number" id="CVC">
+            </label><br>
+
+            <label for="">
+                Prenumerera på vårt nyhetsbrev
+                <input checked type="checkbox" name="news" id="news">
+            </label><br>
+            <label for="">
+                Godkännande av behandling av personuppgifter
+                <input required class="input_group" type="checkbox" name="gdpr" id="gdpr">
+            </label>
+            <br><br>
+            
+            <input class="submitButton" disabled type="submit" value="Beställ">
+            <input class="resetButton" type="reset" value="Rensa formulär">
 
         </div>
-        <div id="bill">
-
-        </div>
-
-        <button id="order" disabled>Beställ munkar</button>
-
+        
     </div>
-
 
     <footer class="info">
         <h2>Kontakta oss</h2>
@@ -180,10 +229,8 @@
             <li>E-post</li>
             <li>Telefon</li>
             <li>Adress</li>
-        
         </ul>
     </footer>
-
    
     <script src="script.js"></script>
 </body>
