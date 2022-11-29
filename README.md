@@ -36,3 +36,14 @@ Validera html och css
 
 Städa i koden
 
+Onsdag:
+Få till -, annars be om hjälp.
+Få till formuläret, annars be om hjälp.
+Hur uppdaterar jag en varukorg?
+Se över rabatter, påbörja minst en rabatt.
+Få till så faktura/kort ändast visas när ifyllt.
+Komentera befintilig kod.
+Påbörja sorteringen, räcker med pris.
+Hur gör jag med beckräftelse? Samma som faktura/kort, (om knapp tryckt visas bekräftelsen) 
+
+vart hittar jag sortera efter pris? 

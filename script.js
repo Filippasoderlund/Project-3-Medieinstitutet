@@ -1,47 +1,3 @@
-//munkar -+
-
-const decreaseButtons = document.querySelectorAll('button[data-operator="minus"]');
-
-const increaseButtons = document.querySelectorAll('button[data-operator="plus"]');
-
-for (let i = 0; i < decreaseButtons.length; i++) {
-  decreaseButtons[i].addEventListener('click', decreaseCount);
-  increaseButtons[i].addEventListener('click', increaseCount);
-}
-
-function increaseCount(e) {
-  const amountEl = e.currentTarget.parentElement.querySelector('.amount');
-
-  let amount = Number(amountEl.innerText);
-  
-  amountEl.innerHTML = amount + 1;
-
-  updateDonutSum(e.currentTarget.parentElement);
-}
-
-function decreaseCount(e) {
-  const amountEl = e.currentTarget.parentElement.querySelector('.amount');
-
-  let amount = Number(amountEl.innerText); // Eller .innerHTML eller .textContent
-
-  if (amount - 1 < 0) {
-    return;
-  }
-
-  amountEl.innerHTML = amount - 1;
-
-  updateDonutSum(e.currentTarget.parentElement);
-}
-
-function updateDonutSum(donutElement) {
-    const donutSinglePrice = donutElement.querySelector('.price').innerHTML;
-    const orderedAmount = donutElement.querySelector('.amount').innerHTML;
-  
-    const sum = donutSinglePrice * orderedAmount;
-  
-    donutElement.querySelector('.sum').innerHTML = sum ;
-    console.log(sum + 'kr');
-  }
 
 // summa munkar
 
@@ -53,46 +9,55 @@ const donuts = [
     amount: 0, 
   },
   {
+    img: '/style/foto/donut2.png',
     name: 'Donut 2',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut3.png',
     name: 'Donut 3',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut4.png',
     name: 'Donut 4',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut5.png',
     name: 'Donut 5',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut6.png',
     name: 'Donut 6',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut7.png',
     name: 'Donut 7',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut8.png',
     name: 'Donut 8',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut9.png',
     name: 'Donut 9',
     price: 15,  
     amount: 0, 
   },
   {
+    img: '/style/foto/donut10.png',
     name: 'Donut 10',
     price: 15,  
     amount: 0, 
@@ -107,9 +72,10 @@ function renderDonuts() {
   for (let i = 0; i < donuts.length; i++) {
     donutContainer.innerHTML += `
       <article class="donut"> 
+        <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
         <h3>${donuts[i].name}</h3>
-        <span class="price">${donuts[i].price} kr</span> kr
-        Antal <span class="amount">${donuts[i].amount} </span> st<br>
+        <span class="price">${donuts[i].price} kr</span>
+        Antal <span class="amount">${donuts[i].amount} st</span><br>
         <span class="sum">0</span>
         <button class="subtract" data-id="${i}">-</button>
         <button class="add" data-id="${i}">+</button>
@@ -154,8 +120,6 @@ function updateDonutAmount(e) {
   renderDonuts();
 }
 
-
-
 renderDonuts();
 
 //kundinfo
@@ -169,6 +133,10 @@ const cityField = document.querySelector('#city');
 const codeField = document.querySelector('#code');
 const numberField = document.querySelector('#number');
 const emailField = document.querySelector('#email');
+const ssnField = document.querySelector('#ssn');
+const cardField = document.querySelector('#card');
+const dateyearField = document.querySelector('#dateyear');
+const CVCField = document.querySelector('#CVC');
 
 let fnameIsOk = false;
 let lnameIsOk = false;
@@ -178,6 +146,10 @@ let cityIsOk = false;
 let codeIsOk = false;
 let numberIsOk = false;
 let emailIsOk = false;
+let ssnIsOk = false;
+let cardIsOk = false;
+let dateyearIsOk = false;
+let CVCIsOk = false;
 
 fnameField.addEventListener('change', checkFname);
 lnameField.addEventListener('change', checkLname);
@@ -187,8 +159,47 @@ cityField.addEventListener('change', checkcity);
 codeField.addEventListener('change', checkcode);
 numberField.addEventListener('change', checkNumber);
 emailField.addEventListener('change', checkEmail);
+ssnField.addEventListener('change', checkSsn);
+cardField.addEventListener('change', checkCard);
+dateyearField.addEventListener('change', checkDateyear);
+CVCField.addEventListener('change', checkCVC);
 
+/**
+ * function validateInput(fname, errorField) {
+  let fname = document.getElementById(fname).value;
+  const errorField = document.getElementById(errorField);
 
+  if (fname.length === 0) {
+    errorField.innerHTML = '*';
+    return false;
+  }
+
+  errorField.innerHTML = '';
+  return true;
+}
+
+validateInput('zipCode', 'zipCodeError');
+ * 
+ */
+function checkCVC() {
+  CVCIsOk = CVCField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkDateyear() {
+  dateyearIsOk = dateyearField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkCard() {
+  cardIsOk = cardField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
+
+function checkSsn() {
+  ssnIsOk = ssnField.value.indexOf(' ') > -1;
+  activateGenerateButton();
+}
 
 function checkEmail() {
   emailIsOk = emailField.value.indexOf(' ') > -1;
