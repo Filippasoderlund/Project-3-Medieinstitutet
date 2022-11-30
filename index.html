@@ -18,8 +18,24 @@
 
         <button class="basket">Varukorg</button><button>Meny</button>
     </main>
-  
-    <div id="products" class="products" >
+
+    <div id="app">
+        <div class="filter">
+       
+          <p>
+            <label>
+              <span>Price Range</span>
+              <span class="flex">
+                <span>0 kr</span>
+                <input type="range" min="0" max="500" value="500" id="priceRange" step="10" />
+                <span>500 kr</span>
+              </span>
+              <span id="currentRangeValue">500</span> kr
+            </label>
+          </p>
+        </div>
+        <div id="donutsListing"></div>
+    </div>
         
     </div>
 
@@ -41,28 +57,28 @@
         <h2>Kundinformation</h2>
         <label for="">
             <span>Förnamn</span>  
-            <span class="errorField" hidden>Ange ett giltig namn</span>
+            <span class="errorField" id="errorFieldFname" hidden>Ange ett giltig namn</span>
             <input placeholder="Förnamn" required class="inputField" type="text" id="fname"> 
         </label><br>
         <label for="">
             <span>Efternamn</span>  
-            <span class="errorField" hidden>Ange ett giltig efternamn</span>
+            <span class="errorField" id="errorFieldLname" hidden>Ange ett giltig efternamn</span>
             <input placeholder="Efternamn" required class="inputField" type="text" id="lname">
         </label><br>
         <label for="">
             <span>Gatuadress</span> 
-            <span class="errorField" hidden>Ange en giltig adress</span>
+            <span class="errorField" id="errorFieldStreat" hidden>Ange en giltig adress</span>
             <input placeholder="Gata och nummer" required class="inputField" type="text" id="streat">
         </label><br>
         <label >
         <label for="">
             <span>Postnummer</span> 
-            <span class="errorField" hidden>Ange ett giltigt postnummer</span>
+            <span class="errorField" id="errorFieldPostnumber" hidden>Ange ett giltigt postnummer</span>
             <input required class="inputField" type="text" id="postnumber">
         </label><br>
         <label for="">
             <span>Postort</span> 
-            <span class="errorField" hidden>Ange en giltig postort</span>
+            <span class="errorField" id="errorFieldCity" hidden>Ange en giltig postort</span>
             <input placeholder="stad" required class="inputField" type="text" id="city">
         </label><br>
         <label for="">
@@ -71,13 +87,13 @@
         </label><br>
         <label for="">
             <span>Telefonummer</span> 
-            <span class="errorField" hidden>Ange ett giltigt telefonummer</span>
-            <input id="number" placeholder="Telefonummer" class="inputField" type="number" >
+            <span class="errorField" id="errorFieldNumber" hidden>Ange ett giltigt telefonummer</span>
+            <input placeholder="Telefonummer" class="inputField" type="number" id="number" >
         </label><br>
         <label for="">
             <span>Mailadress</span> 
-            <span class="errorField" hidden>Ange en gilltig mailadress</span>
-            <input id="email" placeholder="E-post" class="inputField" type="text" >
+            <span class="errorField" id="errorFieldEmail" hidden>Ange en gilltig mailadress</span>
+            <input placeholder="E-post" class="inputField" type="text" id="email" >
         </label><br>
     </div>
 
@@ -96,7 +112,7 @@
             <label for="">
                 <span>Personnummer</span> 
                 <span class="errorField" id="errorFieldSsn" hidden></span>
-                <input id="ssn" placeholder="YYMMDD0000" class="inputField" type="ssn" >
+                <input placeholder="YYMMDD0000" class="inputField" type="ssn" id="ssn" >
             </label>
         </div>
         <div id="cardpay" class="display-none" hidden>
@@ -108,7 +124,7 @@
             <label for="">
                 <span>mån/år</span> 
                 <span class="errorField" id="errorFieldDateyear" hidden></span>
-                <input placeholder="MM/YY" class="inputField" type="number" id="dateyear">
+                <input placeholder="MM" class="inputField" type="number" id="date">/<input placeholder="YY" class="inputField" type="number" id="year">
             </label><br>
             <label for="">
                 <span>CVC</span> 
