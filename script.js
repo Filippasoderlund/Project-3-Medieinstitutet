@@ -75,12 +75,11 @@ let filteredDonutsInPriceRange = [...donuts];
 function renderDonuts() {
   donutsListing.innerHTML = ' ';
 
-  for (let i = 0; i < donuts.length; i++) {
+  donuts.forEach((donut) => {
     donutsListing.innerHTML += `
       <article class="donut"> 
         <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
         <h3>${donuts[i].name}</h3>
-        
         <span class="price">${donuts[i].price} kr</span>
         Antal <span class="amount">${donuts[i].amount} st</span><br>
         <span class="sum">0</span>
@@ -88,7 +87,11 @@ function renderDonuts() {
         <button class="add" data-id="${i}">+</button>
       </article>
     `;
-  }
+  }) ;
+}
+
+renderDonuts();
+  
   document.querySelectorAll('button.add').forEach((btn) => {
     btn.addEventListener('click', updateDonutAmount);
   });
@@ -108,7 +111,7 @@ function renderDonuts() {
     printOrderedDonuts();
   
   document.querySelector('#cartSum').innerHTML = sum;
-}
+
 
 function changePriceRange() {
   const currentPrice = priceRangeSlider.value;
