@@ -65,7 +65,7 @@ const donuts = [
 ];
 
 const donutsListing = document.querySelector('#donutsListing');
-const priceRangeSlider = document.querySelector('#priceRange');
+const priceRangeSlider = document.querySelector('#priceRangeSlider');
 const currentRangeValue = document.querySelector('#currentRangeValue');
 
 let filteredDonuts = [...donuts];
@@ -136,21 +136,25 @@ function decreaseDonutAmount(e) {
     renderDonuts();
 }
 
-
-
 renderDonuts();
 
 //produktfiltrering 
 
+priceRangeSlider.addEventListener("change", showPrice);
 
-function changePriceRange() {
+function showPrice() {
+  currentRangeValue.innerHTML = priceRangeSlider.value + " kr";
+  priceRange();
+}
+
+function priceRange() {
   const currentPrice = priceRangeSlider.value;
   currentRangeValue.innerHTML = currentPrice;
 
   filteredDonutsInPriceRange = filteredDonuts.filter(donut => donut.price <= currentPrice);
   renderDonuts();
 }
-
+//currentRangeValue
 
 //kundinfo
 
