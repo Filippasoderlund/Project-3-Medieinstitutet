@@ -65,7 +65,6 @@ const donuts = [
 ];
 
 const donutsListing = document.querySelector('#donutsListing');
-const categoryFilterRadios = document.querySelectorAll('[name="categoryFilter"]');
 const priceRangeSlider = document.querySelector('#priceRange');
 const currentRangeValue = document.querySelector('#currentRangeValue');
 
@@ -78,10 +77,10 @@ function renderDonuts() {
   donuts.forEach((donut) => {
     donutsListing.innerHTML += `
       <article class="donut"> 
-        <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
-        <h3>${donuts[i].name}</h3>
-        <span class="price">${donuts[i].price} kr</span>
-        Antal <span class="amount">${donuts[i].amount} st</span><br>
+        <img src="${donuts.img}" alt="" loading="lazy" width="200">
+        <h3>${donuts.name}</h3>
+        <span class="price">${donuts.price} kr</span>
+        Antal <span class="amount">${donuts.amount} st</span><br>
         <span class="sum">0</span>
         <button class="subtract" data-id="${i}">-</button>
         <button class="add" data-id="${i}">+</button>
@@ -89,8 +88,6 @@ function renderDonuts() {
     `;
   }) ;
 }
-
-renderDonuts();
   
   document.querySelectorAll('button.add').forEach((btn) => {
     btn.addEventListener('click', updateDonutAmount);
@@ -121,54 +118,7 @@ function changePriceRange() {
   renderDonuts();
 }
 
-/**
- * Update which donuts are shown
- */
-// categories: ['Sweet', 'Sour', 'Vegan']
-function updateCategoryFilter(e) {
-  // Hämta värdet på vald radio button
-  const selectedCategory = e.currentTarget.value;
-  console.log(selectedCategory);
-
-  if (selectedCategory === 'all') {
-    filteredDonuts = [...donuts]; // copy reference
-  } else {
-    // Töm filtered donuts på tidigare filtrering
-    filteredDonuts = [];
-
-    // Loopa igenom alla produkter
-    for (let i = 0; i < donuts.length; i++) {
-      const prod = donuts[i];
-
-      // Gör om kategorierna i varje produkt till lowercase
-      const catsInLowercase = [];
-      for (let j = 0; j < prod.category.length; j++) {
-        catsInLowercase.push(prod.category[j].toLowerCase());
-      }
-      // Kolla om vald kategori finns med i listan
-      if (catsInLowercase.indexOf(selectedCategory) > -1) {
-        filteredDonuts.push(prod);
-      }
-    }
-  }
-
-  /* filteredDonuts = donuts.filter((donut) => {
-    // Gör om kategorierna i varje produkt till lowercase
-    const categoriesInLowerCase = donut.category.map((category) => category.toLowerCase());
-    if (categoriesInLowerCase.indexOf(selectedCategory) > -1) {
-      return true;
-    }
-    return false;
-    // Kortare & otydligare: return categoriesInLowerCase.indexOf(selectedCategory) > -1;
-  }); */
-
-  changePriceRange();
-}
-
-// Alternativ till foreach
-for (let i = 0; i < categoryFilterRadios.length; i++) {
-  categoryFilterRadios[i].addEventListener('click', updateCategoryFilter);
-}
+changePriceRange();
 
 priceRangeSlider.addEventListener('input', changePriceRange);
 
