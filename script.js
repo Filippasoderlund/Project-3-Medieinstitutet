@@ -72,11 +72,11 @@ let filteredDonuts = [...donuts];
 let filteredDonutsInPriceRange = [...donuts];
 
 function renderDonuts() {
-  donutsListing.innerHTML = ' ';
+  donutsListing.innerHTML = "";
 
-  filteredDonutsInPriceRange.forEach((product) => {
-    donutsListing.innerHTML += `
-    <article class="donut"> 
+  for (let i = 0; i < donuts.length; i++) {
+      donutsListing.innerHTML += `
+      <article class="donut"> 
       <img src="${donuts.img}" alt="" loading="lazy" width="200">
       <h3>${donuts.name}</h3>
       <span class="price">${donuts.price} kr</span>
@@ -85,30 +85,29 @@ function renderDonuts() {
       <button class="subtract" data-id="${donuts.add}">-</button>
       <button class="add" data-id="${donuts.subtract}">+</button>
     </article>
-    `;
-  });
+  `;
 }
 
 document.querySelectorAll('button.add').forEach((btn) => {
-    btn.addEventListener('click', updateDonutAmount);
-  });
+  btn.addEventListener('click', updateDonutAmount);
+});
   
-  document.querySelectorAll('button.subtract').forEach((btn) => {
-    btn.addEventListener('click', updateDonutAmount);
-  });
+document.querySelectorAll('button.subtract').forEach((btn) => {
+  btn.addEventListener('click', decreaseDonutAmount);
+});
 
-  const sum = donuts.reduce(
-    (previousValue, donut) => {
-      return (donut.amount + donut.price) + previousValue;
-    },
-    0
-    );
-    console.log(sum);
+const sum = donuts.reduce(
+  (previousValue, donut) => {
+    return (donut.amount + donut.price) + previousValue;
+  },
+  0
+);
 
-    printOrderedDonuts();
+printOrderedDonuts();
   
-  document.querySelector('#cartSum').innerHTML = sum;
+document.querySelector('#cartSum').innerHTML = sum;
 
+}
 
 function changePriceRange() {
   const currentPrice = priceRangeSlider.value;
@@ -132,9 +131,10 @@ function updateDonutAmount(e) {
   const donutClick = e.currentTarget.dataset.id;
   donuts[donutClick].amount += 1;
 
-  console.log(donuts);
   renderDonuts();
 }
+
+
 
 renderDonuts();
 
@@ -197,9 +197,11 @@ CVCField.addEventListener('change', checkCVC);
   return true;
 }
 
-validateInput('zipCode', 'zipCodeError');
+validateInput('fname', 'errorField');
  * 
  */
+
+ 
 function checkCVC() {
   CVCIsOk = CVCField.value.indexOf(' ') > -1;
   activateGenerateButton();
@@ -260,22 +262,22 @@ function checkLname() {
   activateGenerateButton();
 }
 
-
+function checkFname() {
+  console.log(fnameField.value);
+  activateGenerateButton();
+}
 
 function activateGenerateButton() {
-  if (fnameIsOk && lnameIsOk && streatIsOk && postnumberIsOk && cityIsOk && codeIsOk && numberIsOk && emailIsOk && ssnIsOk && CVCIsOk && cardIsOk && dateyearIsOk) {
+  if (fnameIsOk && lnameIsOk && streatIsOk && postnumberIsOk && cityIsOk && codeIsOk && numberIsOk && emailIsOk && ssnIsOk && CVCIsOk && cardIsOk && dateIsOk && yearIsOk) {
     generateButton.removeAttribute('disabled');
   
   } else {
     generateButton.setAttribute('disabled', '');
     
-    
   }
 }
 
-function checkFname() {
-    console.log(fnameField.value);
-}
+
 
 //Betalnings metod
 
