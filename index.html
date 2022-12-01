@@ -17,7 +17,7 @@
     <main>
         <h1>Gottfrids <br> Munkar</h1>
 
-        <button class="basket"><i class="fa-solid fa-cart-shopping"></i></button><button><i class="fa-solid fa-bars"></i></button>
+        <button class="basket"><i class="fa-solid fa-cart-shopping"><div id="cartSum"></div></i></button><button><i class="fa-solid fa-bars"></i></button>
     </main>
 
     
@@ -27,8 +27,8 @@
               <span>Price Range</span>
               <span class="flex">
                 <span>0 kr</span>
-                <input type="range" min="10" max="100" value="100" id="priceRange" step="10" />
-                <span>100 kr</span>
+                <input type="range" min="10" max="100" value="100" id="priceRangeSlider" step="10" />
+                <span >100 kr</span>
               </span>
               <span id="currentRangeValue">100</span> kr
             </label>
@@ -39,16 +39,18 @@
 
     <div id="">
         <h2>Varukorg</h2>
-        <div id="cartSum"></div>
+        <div id="cart"></div>
+
+       
         <label for="discountCode">
             <span>Rabattkod: </span>
             <input type="text" id="discountCode" name="discountCode" />
         </label><br>
 
-        <button>Rensa Varukorg</button>
+        <button id="clearCart">Rensa Varukorg</button>
     </div>
 
-    <div id="cart"></div>
+    
 
     <div class="costumer-information">
 
@@ -130,27 +132,25 @@
                 <input placeholder="000" class="inputField" type="number" id="CVC">
             </label><br>
 
-            <label for="">
-                <span>Ja, jag vill prenumerera på erat nyhetsbrev!</span>
-                <input checked type="checkbox" name="news" id="news">
-            </label><br>
-            <label for="">
-                <span>Ja, jag godkänner behandling av personuppgifter.</span>
-                <input required type="checkbox" name="gdpr" id="gdpr">
-            </label>
-            <br>
-            
-            <button id="order" disabled>Beställ munkar</button>
-            <button id="clearForm" >Rensa formulär</button>
-
             <div id="confirmation" hidden>
                 <h3>Orderbekräftelse</h3>
                 <span>Tack för din beställning!</span>
                 <span>Din bekräftelse kommer på den angivna mailen</span>
                 <span>Din beställning lämnar vårat lager dagen efter beställningen lagts. Dina munkar kommer till angiven adress mellan 8-12 imorgon.</span>
-            </div>
-
+            </div> 
         </div>
+        <label for="">
+            <span>Ja, jag vill prenumerera på erat nyhetsbrev!</span>
+            <input checked type="checkbox" name="news" id="news">
+        </label><br>
+        <label for="">
+            <span>Ja, jag godkänner behandling av personuppgifter.</span>
+            <input required type="checkbox" name="gdpr" id="gdpr">
+        </label>
+        <br>
+        
+        <button id="order" disabled>Beställ munkar</button>
+        <button id="clearForm" >Rensa formulär</button>
     </div>
 
     <footer class="info">

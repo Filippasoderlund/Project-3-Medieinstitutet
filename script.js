@@ -67,6 +67,8 @@ const donuts = [
 const donutsListing = document.querySelector('#donutsListing');
 const priceRangeSlider = document.querySelector('#priceRangeSlider');
 const currentRangeValue = document.querySelector('#currentRangeValue');
+const clearCartBtn = document.querySelector('#clearCart');
+const clearFormBtn = document.querySelector('#clearForm');
 
 let filteredDonuts = [...donuts];
 let filteredDonutsInPriceRange = [...donuts];
@@ -115,6 +117,7 @@ function printOrderedDonuts() {
   for(let i = 0; i < donuts.length; i++) {
     if (donuts[i].amount > 0) {
       document.querySelector('#cart').innerHTML = `<p>${donuts[i].name}</p>`;
+      //Behöver man skriva ut allt här? Bild osv? 
     }
   }
 } 
@@ -136,6 +139,17 @@ function decreaseDonutAmount(e) {
     renderDonuts();
 }
 
+
+clearCartBtn.addEventListener('click', clearCart);
+
+function clearCart (e){
+  for (let i = 0; i<donuts.length; i++){
+    donuts[i].amount = 0;
+  }
+
+  renderDonuts(donuts); 
+}
+
 renderDonuts();
 
 //produktfiltrering 
@@ -154,7 +168,6 @@ function priceRange() {
   filteredDonutsInPriceRange = filteredDonuts.filter(donut => donut.price <= currentPrice);
   renderDonuts();
 }
-//currentRangeValue
 
 //kundinfo
 
@@ -296,6 +309,15 @@ function activateGenerateButton() {
 }
 
 
+clearFormBtn.addEventListener('click', clearForm);
+
+function clearForm (e){
+  for (let i = 0; i<donuts.length; i++){
+    donuts[i].amount = 0;
+  }
+
+  renderDonuts(donuts); 
+}
 
 //Betalnings metod
 

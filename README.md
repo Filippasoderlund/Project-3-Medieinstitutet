@@ -29,15 +29,14 @@ Innan inläming:
     -Validera html och css
     -Städa i koden
 
-Onsdag att ta tag i:
-Få till -, (annars be om hjälp.)
-Få till formuläret, (annars be om hjälp.)
-Hur uppdaterar jag en varukorg?
-Se över rabatter, påbörja minst en rabatt.
+Fredag att ta tag i:
+Få till formuläret
+Koppla varukorgs summa uppe i varukorgen 
+Få till rabatter 
 Få till så faktura/kort ändast visas när ifyllt.
 Komentera befintilig kod.
 Få till att sorteringen fungerar med munkarna 
 Hur gör jag med beckräftelse? Samma som faktura/kort, (om knapp tryckt visas bekräftelsen) 
 
-Torsdag:
+
 
