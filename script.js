@@ -77,13 +77,13 @@ function renderDonuts() {
   for (let i = 0; i < donuts.length; i++) {
       donutsListing.innerHTML += `
       <article class="donut"> 
-      <img src="${donuts.img}" alt="" loading="lazy" width="200">
-      <h3>${donuts.name}</h3>
-      <span class="price">${donuts.price} kr</span>
-      Antal <span class="amount">${donuts.amount} st</span><br>
+      <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
+      <h3>${donuts[i].name}</h3>
+      <span class="price">${donuts[i].price} kr</span>
+      Antal <span class="amount">${donuts[i].amount} st</span><br>
       <span class="sum">0</span>
-      <button class="subtract" data-id="${donuts.add}">-</button>
-      <button class="add" data-id="${donuts.subtract}">+</button>
+      <button class="subtract" data-id="${donuts[i].add}">-</button>
+      <button class="add" data-id="${donuts[i].subtract}">+</button>
     </article>
   `;
 }
