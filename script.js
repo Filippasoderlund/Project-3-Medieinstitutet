@@ -82,8 +82,8 @@ function renderDonuts() {
       <span class="price">${donuts[i].price} kr</span>
       Antal <span class="amount">${donuts[i].amount} st</span><br>
       <span class="sum">0</span>
-      <button class="subtract" data-id="${donuts[i].add}">-</button>
-      <button class="add" data-id="${donuts[i].subtract}">+</button>
+      <button class="subtract" data-id="${i}">-</button>
+      <button class="add" data-id="${i}">+</button>
     </article>
   `;
 }
@@ -132,6 +132,10 @@ function updateDonutAmount(e) {
   donuts[donutClick].amount += 1;
 
   renderDonuts();
+}
+
+function decreaseDonutAmount(e) {
+  // TODO
 }
 
 
