@@ -109,14 +109,6 @@ document.querySelector('#cartSum').innerHTML = sum;
 
 }
 
-function changePriceRange() {
-  const currentPrice = priceRangeSlider.value;
-  currentRangeValue.innerHTML = currentPrice;
-
-  filteredDonutsInPriceRange = filteredDonuts.filter(donut => donut.price <= currentPrice);
-  renderDonuts();
-}
-
 
 function printOrderedDonuts() {
   document.querySelector('#cart').innerHTML = ' ';
@@ -135,12 +127,30 @@ function updateDonutAmount(e) {
 }
 
 function decreaseDonutAmount(e) {
-  // TODO
+  const donutClicked = e.currentTarget.dataset.id;
+
+    if (donuts[donutClicked].amount > 0) {
+        donuts[donutClicked].amount -= 1;
+    }
+
+    renderDonuts();
 }
 
 
 
 renderDonuts();
+
+//produktfiltrering 
+
+
+function changePriceRange() {
+  const currentPrice = priceRangeSlider.value;
+  currentRangeValue.innerHTML = currentPrice;
+
+  filteredDonutsInPriceRange = filteredDonuts.filter(donut => donut.price <= currentPrice);
+  renderDonuts();
+}
+
 
 //kundinfo
 
