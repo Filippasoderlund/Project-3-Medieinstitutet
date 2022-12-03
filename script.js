@@ -406,13 +406,13 @@ contentBtn2.addEventListener('click', showContent2);
 function showContent1() {
   document.querySelector('#payment').classList.add('orange');
   document.querySelector('#card').classList.add('visible');
-  document.querySelector('#invoice').classList.remove('visible');s
+  document.querySelector('#invoice').classList.remove('visible');
 }
 
 function showContent2() {
   document.querySelector('#payment').classList.add('yellow');
   document.querySelector('#card').classList.remove('visible');
-  document.querySelector('#invoice').classList.add('visible');s
+  document.querySelector('#invoice').classList.add('visible');
 }
 
 //beställnings bekräftelse
