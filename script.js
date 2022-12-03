@@ -64,69 +64,89 @@ const donuts = [
   },
 ];
 
-const donutsListing = document.querySelector('#donutsListing');
+//donutsListing = donutHtmlContainer
+
+
+const donutHtmlContainer = document.querySelector('#donutsListing');
 const priceRangeSlider = document.querySelector('#priceRangeSlider');
 const currentRangeValue = document.querySelector('#currentRangeValue');
 const clearCartBtn = document.querySelector('#clearCart');
 const clearFormBtn = document.querySelector('#clearForm');
+const cartHtmlContainer = document.querySelector('#cart');
+
+const today = new Date();
+const isFriday = today.getDay() === 5;
+const isMonday = today.getDay() === 1;
+const currentHours = today.getHours();
+
 
 let filteredDonuts = [...donuts];
 let filteredDonutsInPriceRange = [...donuts];
 
-function renderDonuts() {
-  donutsListing.innerHTML = "";
+function printDonuts() {
+  donutHtmlContainer.innerHTML = "";
+
+  let priceIncrease = 1;
+
+  if((isFriday && currentHours >= 15) || (isMonday && currentHours <= 3)) {
+    priceIncrease = 1.15;
+  }
 
   for (let i = 0; i < donuts.length; i++) {
-      donutsListing.innerHTML += `
+    donutHtmlContainer.innerHTML += `
       <article class="donut"> 
-      <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
-      <h3>${donuts[i].name}</h3>
-      <span class="price">${donuts[i].price} kr</span>
-      Antal <span class="amount">${donuts[i].amount} st</span><br>
-      <span class="sum">0</span>
-      <button class="subtract" data-id="${i}">-</button>
-      <button class="add" data-id="${i}">+</button>
-    </article>
-  `;
-}
-
-document.querySelectorAll('button.add').forEach((btn) => {
-  btn.addEventListener('click', updateDonutAmount);
-});
-  
-document.querySelectorAll('button.subtract').forEach((btn) => {
-  btn.addEventListener('click', decreaseDonutAmount);
-});
-
-const sum = donuts.reduce(
-  (previousValue, donut) => {
-    return (donut.amount + donut.price) + previousValue;
-  },
-  0
-);
-
-printOrderedDonuts();
-  
-document.querySelector('#cartSum').innerHTML = sum;
-
-}
-
-
-function printOrderedDonuts() {
-  document.querySelector('#cart').innerHTML = ' ';
-  for(let i = 0; i < donuts.length; i++) {
-    if (donuts[i].amount > 0) {
-      document.querySelector('#cart').innerHTML = `<p>${donuts[i].name}</p>`;
-      //Behöver man skriva ut allt här? Bild osv? 
-    }
+        <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
+        <h3>${donuts[i].name}</h3>
+        <span class="price">${donuts[i].price * priceIncrease} kr</span>
+        Antal <span class="amount">${donuts[i].amount} st</span><br>
+        <span class="sum">0</span>
+        <button class="subtract" data-id="${i}">-</button>
+        <button class="add" data-id="${i}">+</button>
+      </article>
+    `;
   }
-} 
+
+  document.querySelectorAll('button.add').forEach((btn) => {
+    btn.addEventListener('click', updateDonutAmount);
+  });
+    
+  document.querySelectorAll('button.subtract').forEach((btn) => {
+    btn.addEventListener('click', decreaseDonutAmount);
+  });
+
+  const sum = donuts.reduce(
+    (previousValue, donut) => {
+      return (donut.amount + donut.price) + previousValue;
+    },
+    0
+  );
+
+  printCartDonuts();
+    
+  document.querySelector('#cartSum').innerHTML = sum;
+
+}
+
+
+//dubbelt under?
+
+function decreaseAmount(e) {
+
+}
+
+function increaseAmount(e) {
+    const index = e.currentTarget.dataset.id;
+    donuts[index].amount += 1;
+    printDonuts();
+}
+
+//dubbelt över??
 
 function updateDonutAmount(e) {
   const donutClick = e.currentTarget.dataset.id;
   donuts[donutClick].amount += 1;
 
-  renderDonuts();
+  printDonuts();
 }
 
 function decreaseDonutAmount(e) {
@@ -136,8 +156,46 @@ function decreaseDonutAmount(e) {
         donuts[donutClicked].amount -= 1;
     }
 
-    renderDonuts();
+    printDonuts();
 }
+
+
+function printCartDonuts() {
+  cartHtmlContainer.innerHTML = '';
+
+  let sum = 0;
+  let msg = '';
+  let priceIncrease = 1;
+
+  if((isFriday && currentHours >= 15) || (isMonday && currentHours <= 3)) {
+    priceIncrease = 1.15;
+  }
+
+  donuts.forEach(donuts => {   //hur gör jag raka sträck? (span)
+      if(donuts.amount > 0) {
+          const adjustedDonutPrice = donuts.price * priceIncrease
+          sum += donutHtmlContainer.amount * donutHtmlContainer.price;
+          cartHtmlContainer.innerHTML += `
+              <article>
+                  <span>${donuts.name}</span> | <span>${donuts.amount}</span> | <span>${donuts.amount * adjustedDonutPrice} kr</span> 
+              </article>
+          `;
+      }   
+  });
+
+  if(sum <= 0) {
+    return;
+  }
+
+  if(today.getDay() === 1) {
+      sum += 0.9;
+      msg += '<p>Måndagsrabatt: 10 % på hela köpet';
+  }
+
+  cartHtmlContainer.innerHTML += `<p>Total sum: ${sum} kr<p>`;
+  cartHtmlContainer.innerHTML += `<div>${msg}</div>`;
+}
+printDonuts();
 
 
 clearCartBtn.addEventListener('click', clearCart);
@@ -147,10 +205,10 @@ function clearCart (e){
     donuts[i].amount = 0;
   }
 
-  renderDonuts(donuts); 
+  printDonuts(donuts); 
 }
 
-renderDonuts();
+printDonuts();
 
 //produktfiltrering 
 
@@ -166,14 +224,16 @@ function priceRange() {
   currentRangeValue.innerHTML = currentPrice;
 
   filteredDonutsInPriceRange = filteredDonuts.filter(donut => donut.price <= currentPrice);
-  renderDonuts();
+  printDonuts();
 }
 
-//kundinfo
+//kundinfo errorFieldName
+
+const errorNameField = document.querySelector('#errorNameField');
+
 
 const generateButton = document.querySelector('#customerinfo');
-const fnameField = document.querySelector('#fname');
-const lnameField = document.querySelector('#lname');
+const nameField = document.querySelector('#name');
 const streatField = document.querySelector('#streat');
 const postnumberField = document.querySelector('#postnumber');
 const cityField = document.querySelector('#city');
@@ -186,8 +246,7 @@ const dateField = document.querySelector('#date');
 const yearField = document.querySelector('#year');
 const CVCField = document.querySelector('#CVC');
 
-let fnameIsOk = false;
-let lnameIsOk = false;
+let nameIsOk = false;
 let streatIsOk = false;
 let postnumberIsOk = false;
 let cityIsOk = false;
@@ -200,8 +259,7 @@ let dateIsOk = false;
 let yearIsOk = false;
 let CVCIsOk = false;
 
-fnameField.addEventListener('change', checkFname);
-lnameField.addEventListener('change', checkLname);
+nameField.addEventListener('change', checkName);
 streatField.addEventListener('change', checkStreat);
 postnumberField.addEventListener('change', checkPostnumber);
 cityField.addEventListener('change', checkcity);
@@ -213,6 +271,8 @@ cardField.addEventListener('change', checkCard);
 dateField.addEventListener('change', checkDate);
 yearField.addEventListener('change', checkYear);
 CVCField.addEventListener('change', checkCVC);
+
+
 
 /**
  * function validateInput(fname, errorField) {
@@ -284,27 +344,33 @@ function checkPostnumber() {
 }
 
 function checkStreat() {
-  streatIsOk = streatField.value.indexOf(' ') > -1;
+  if (streatField.value.indexOf(' ') > -1) { 
+    streatIsOk = true;
+    
+  } else {
+    streatIsOk = false;
+    
+  }
   activateGenerateButton();
 }
 
-function checkLname() {
-  lnameIsOk = lnameField.value.indexOf(' ') > -1;
-  activateGenerateButton();
-}
-
-function checkFname() {
-  console.log(fnameField.value);
+function checkName() {
+  if (nameField.value.indexOf(' ') > -1) { 
+    nameIsOk = true;
+    
+    
+  } else {
+    nameIsOk = false;
+    errorNameField.removeAttribute('hidden', '');
+  }
   activateGenerateButton();
 }
 
 function activateGenerateButton() {
-  if (fnameIsOk && lnameIsOk && streatIsOk && postnumberIsOk && cityIsOk && codeIsOk && numberIsOk && emailIsOk && ssnIsOk && CVCIsOk && cardIsOk && dateIsOk && yearIsOk) {
+  if(nameIsOk && streatIsOk && postnumberIsOk && cityIsOk && codeIsOk && numberIsOk && emailIsOk && ssnIsOk && CVCIsOk && cardIsOk && dateIsOk && yearIsOk) {
     generateButton.removeAttribute('disabled');
-  
   } else {
     generateButton.setAttribute('disabled', '');
-    
   }
 }
 
@@ -316,7 +382,7 @@ function clearForm (e){
     donuts[i].amount = 0;
   }
 
-  renderDonuts(donuts); 
+  printDonuts(donuts); 
 }
 
 //Betalnings metod
