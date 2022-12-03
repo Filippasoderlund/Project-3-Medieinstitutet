@@ -5,62 +5,63 @@ const donuts = [
   {
     img: '/style/foto/donut1.png',
     name: 'Donut 1',
-    price: 10, 
+    price: 40, 
     amount: 0, 
   },
   {
     img: '/style/foto/donut2.png',
     name: 'Donut 2',
-    price: 15,  
+    price: 40,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut3.png',
     name: 'Donut 3',
-    price: 15,  
+    price: 45,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut4.png',
     name: 'Donut 4',
-    price: 15,  
+    price: 55,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut5.png',
     name: 'Donut 5',
-    price: 100,  
+    price: 55,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut6.png',
     name: 'Donut 6',
-    price: 200,  
+    price: 60,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut7.png',
     name: 'Donut 7',
-    price: 150,  
+    price: 70,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut8.png',
     name: 'Donut 8',
-    price: 15,  
+    price: 70,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut9.png',
     name: 'Donut 9',
-    price: 500,  
+    price: 80,  
     amount: 0, 
   },
   {
     img: '/style/foto/donut10.png',
     name: 'Donut 10',
-    price: 400,  
+    price: 90,  
     amount: 0, 
+    sortSum: 0,
   },
 ];
 
@@ -109,9 +110,8 @@ function printDonuts() {
       <article class="donut"> 
         <img src="${donuts[i].img}" alt="" loading="lazy" width="200">
         <h3>${donuts[i].name}</h3>
-        <span class="price">${donuts[i].price * priceIncrease} kr</span>
+        <span class="price">${donuts[i].price * priceIncrease} kr/st</span><br>
         Antal <span class="amount">${donuts[i].amount} st</span><br>
-        <span class="sum">0</span>
         <button class="subtract" data-id="${i}">-</button>
         <button class="add" data-id="${i}">+</button>
       </article>
@@ -139,20 +139,6 @@ function printDonuts() {
 
 }
 
-
-//dubbelt under?
-
-function decreaseAmount(e) {
-
-}
-
-function increaseAmount(e) {
-    const index = e.currentTarget.dataset.id;
-    donuts[index].amount += 1;
-    printDonuts();
-}
-
-//dubbelt över??
 
 function updateDonutAmount(e) {
   const donutClick = e.currentTarget.dataset.id;
@@ -430,7 +416,3 @@ function showContent2() {
 }
 
 //beställnings bekräftelse
-
-
-
-//specialregler
