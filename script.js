@@ -79,18 +79,30 @@ const isFriday = today.getDay() === 5;
 const isMonday = today.getDay() === 1;
 const currentHours = today.getHours();
 
+let slownessTimer = setTimeout(stupidCustomerMessage, 1000 * 60 * 15);
 
 let filteredDonuts = [...donuts];
 let filteredDonutsInPriceRange = [...donuts];
+
+function stupidCustomerMessage() {
+  alert('Du är för långsam på att beställa');
+}
+
+
+function getPriceMultiplier() {
+  if((isFriday && currentHours >= 15) || (isMonday && currentHours <= 3)) {
+    return 1.15;
+  }
+  return 1;
+}
+
+
 
 function printDonuts() {
   donutHtmlContainer.innerHTML = "";
 
   let priceIncrease = 1;
 
-  if((isFriday && currentHours >= 15) || (isMonday && currentHours <= 3)) {
-    priceIncrease = 1.15;
-  }
 
   for (let i = 0; i < donuts.length; i++) {
     donutHtmlContainer.innerHTML += `
@@ -164,22 +176,27 @@ function printCartDonuts() {
   cartHtmlContainer.innerHTML = '';
 
   let sum = 0;
+  let orderedDonutAmount = 0;
   let msg = '';
-  let priceIncrease = 1;
+  let priceIncrease = getPriceMultiplier();
 
-  if((isFriday && currentHours >= 15) || (isMonday && currentHours <= 3)) {
-    priceIncrease = 1.15;
-  }
 
-  donuts.forEach(donuts => {   //hur gör jag raka sträck? (span)
-      if(donuts.amount > 0) {
-          const adjustedDonutPrice = donuts.price * priceIncrease
-          sum += donutHtmlContainer.amount * donutHtmlContainer.price;
-          cartHtmlContainer.innerHTML += `
-              <article>
-                  <span>${donuts.name}</span> | <span>${donuts.amount}</span> | <span>${donuts.amount * adjustedDonutPrice} kr</span> 
-              </article>
-          `;
+  donuts.forEach(donuts => { 
+    orderedDonutAmount += donuts.amount;
+      if(donuts.amount > 0) { 
+        let donutPrice = donuts.price;
+        if(donuts.amount >= 10) {
+          donutPrice *= 0.9;
+        }
+        const adjustedDonutPrice = donuts.price * priceIncrease;
+
+        sum += donuts.amount * adjustedDonutPrice;
+
+        cartHtmlContainer.innerHTML += `
+            <article>
+                <span>${donuts.name}</span> | <span>${donuts.amount}</span> | <span>${donuts.amount * adjustedDonutPrice} kr</span> 
+            </article>
+        `;
       }   
   });
 
@@ -194,7 +211,14 @@ function printCartDonuts() {
 
   cartHtmlContainer.innerHTML += `<p>Total sum: ${sum} kr<p>`;
   cartHtmlContainer.innerHTML += `<div>${msg}</div>`;
+
+  if (orderedDonutAmount > 15) {
+    cartHtmlContainer.innerHTML += '<p>Shipping: 0 kr</p>';
+  } else {
+    cartHtmlContainer.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))} kr</p>`;
+  }
 }
+
 printDonuts();
 
 
