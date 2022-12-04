@@ -1,18 +1,17 @@
-@import 'vendor/normalize';
+@import "vendor/normalize";
 
-@import 'base';
+@import "base";
 
-@import 'variables';
+@import "variables";
 
 @media screen and (min-width: 760px) {
-    @import 'tablet';
+  @import "tablet";
 }
 
 @media screen and (min-width: 1366px) {
-    @import 'desktop';
+  @import "desktop";
 }
 
 // ska in i html @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 // @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-

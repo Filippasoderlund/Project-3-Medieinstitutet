@@ -17,7 +17,7 @@
     <main>
         <h1>Gottfrids <br> Munkar</h1>
 
-        <button class="basket"><i class="fa-solid fa-cart-shopping"><div id="cartSum"></div></i></button><button class="meny"><i class="fa-solid fa-bars"></i></button>
+        <button class="basket"><i class="fa-solid fa-cart-shopping"></i><div id="cartSum"></div></button><button class="meny"><i class="fa-solid fa-bars"></i></button>
     </main>
 
     <div class="page">
@@ -37,7 +37,7 @@
         <div id="donutsListing"></div>
 
 
-        <div id="">
+        <div>
             <h2>Varukorg</h2>
             <div id="cart"></div>
 
@@ -55,37 +55,37 @@
         <div class="costumer-information">
 
             <h2>Kundinformation</h2>
-            <label for="">
+            <label for="name">
                 <span>För- och efternamn</span>  
                 <span class="errorField" id="errorFieldName" hidden>Ange ett giltig för- och efternamn</span>
                 <input placeholder="Förnamn och efternamn" required class="inputField" type="text" id="name"> 
             </label><br>
-            <label for="">
+            <label for="streat">
                 <span>Adress</span> 
                 <span class="errorField" id="errorFieldStreat" hidden>Ange en giltig adress</span>
                 <input placeholder="Gata och nummer" required class="inputField" type="text" id="streat">
             </label><br>
             <label >
-            <label for="">
+            <label for="postnumber">
                 <span>Postnummer</span> 
                 <span class="errorField" id="errorFieldPostnumber" hidden>Ange ett giltigt postnummer</span>
                 <input required class="inputField" type="text" id="postnumber">
             </label><br>
-            <label for="">
+            <label for="city">
                 <span>Postort</span> 
                 <span class="errorField" id="errorFieldCity" hidden>Ange en giltig postort</span>
                 <input placeholder="Stad" required class="inputField" type="text" id="city">
             </label><br>
-            <label for="">
+            <label for="code">
                 <span>Portkod</span> 
                 <input placeholder="Ev. portkod" class="inputField" type="number" id="code">
             </label><br>
-            <label for="">
+            <label for="number">
                 <span>Telefonummer</span> 
                 <span class="errorField" id="errorFieldNumber" hidden>Ange ett giltigt telefonummer</span>
                 <input placeholder="Telefonummer" class="inputField" type="number" id="number" >
             </label><br>
-            <label for="">
+            <label for="email">
                 <span>Mailadress</span> 
                 <span class="errorField" id="errorFieldEmail" hidden>Ange en gilltig mailadress</span>
                 <input placeholder="E-post" class="inputField" type="text" id="email" >
@@ -94,34 +94,38 @@
 
         <div id="payment">
             <h3>Betalsätt</h3>
-            <label for="">
+            <label for="card">
                 <span>Kort</span> 
                 <input type="radio" id="card" name="waysToPay" value="creditcard">
             </label>
-            <label for="">
+            <label for="invoice">
                 <span>Faktura</span> 
                 <input type="radio" id="invoice" name="waysToPay" value="invoice"> 
             </label> 
             <br>
-            <div id="ssn" class="display-none" hidden>
-                <label for="">
+            <div id="ssn" class="display-none" >
+                <label for="ssn">
                     <span>Personnummer</span> 
                     <span class="errorField" id="errorFieldSsn" hidden></span>
                     <input placeholder="YYMMDD0000" class="inputField" type="ssn" id="ssn" >
                 </label>
             </div>
-            <div id="cardpay" class="display-none" hidden>
-                <label for="">
+            <div id="cardpay" class="display-none" >
+                <label for="cardNr">
                     <span>Kortnummer</span> 
                     <span class="errorField" id="errorFieldCard" hidden></span>
-                    <input placeholder="0000000000000000" class="inputField" type="number" id="card">
+                    <input placeholder="0000000000000000" class="inputField" type="number" id="cardNr">
                 </label><br>
-                <label for="">
+                <label for="date">
                     <span>mån/år</span> 
                     <span class="errorField" id="errorFieldDateyear" hidden></span>
-                    <input placeholder="MM" class="inputField" type="number" id="date">/<input placeholder="YY" class="inputField" type="number" id="year">
-                </label><br>
-                <label for="">
+                    <input placeholder="MM" class="inputField" type="number" id="date"> /
+                </label>
+                <label for="year">
+                    <input placeholder="YY" class="inputField" type="number" id="year">
+                </label>
+                <br>
+                <label for="CVC">
                     <span>CVC</span> 
                     <span class="errorField" id="errorFieldCVC" hidden></span>
                     <input placeholder="000" class="inputField" type="number" id="CVC">
@@ -134,11 +138,11 @@
                     <span>Din beställning lämnar vårat lager dagen efter beställningen lagts. Dina munkar kommer till angiven adress mellan 8-12 imorgon.</span>
                 </div> 
             </div>
-            <label for="">
+            <label for="news">
                 <span>Ja, jag vill prenumerera på erat nyhetsbrev!</span>
                 <input checked type="checkbox" name="news" id="news">
             </label><br>
-            <label for="">
+            <label for="gdpr">
                 <span>Ja, jag godkänner behandling av personuppgifter.</span>
                 <input required type="checkbox" name="gdpr" id="gdpr">
             </label>

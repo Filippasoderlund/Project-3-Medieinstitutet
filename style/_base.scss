@@ -1,63 +1,69 @@
 .page {
-    text-align: center;
+  text-align: center;
 }
 
 h1 {
-    font-family: 'Comfortaa', cursive;
-    font-size: 3rem;
-    margin-left: 20px;
+  font-family: "Comfortaa", cursive;
+  font-size: 3rem;
+  margin-left: 20px;
 }
 
-h2, h3, h4 {
-    font-family: 'Comfortaa', cursive;
+h2,
+h3,
+h4 {
+  font-family: "Comfortaa", cursive;
 }
 
 button {
-    height: 40px;
-    width: 40px;
-    border: 1px solid rgb(81, 69, 81);
-    border-radius: 5px;
-    margin: 5px;
-    background-color: pink;
+  height: 40px;
+  width: 40px;
+  border: 1px solid rgb(81, 69, 81);
+  border-radius: 5px;
+  margin: 5px;
+  background-color: pink;
 }
 
 .longButtons {
-    width: 80px;
+  width: 80px;
 }
 
 input {
-    border-radius: 5px;
-    border: 1px solid gray;
+  border-radius: 5px;
+  border: 1px solid gray;
 }
 
 .basket {
-    width: 70px;
-    position: fixed;
-    top: 20px;
-    right: 70px;
+  width: 70px;
+  position: fixed;
+  top: 20px;
+  right: 70px;
 }
 
 .meny {
-    position: fixed;
-    top: 20px;
-    right: 10px;
+  position: fixed;
+  top: 20px;
+  right: 10px;
 }
 
-.errorMessage{
-    color: red;
-    border: 1px solid red;
-    border-radius: 5px;
+.errorMessage {
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
 }
 
-.products{
-    height: 80px;
-    text-align: center;
-    width: 100vw;
+.products {
+  height: 80px;
+  text-align: center;
+  width: 100vw;
 }
 
 footer {
-    margin-top: 20px;
-    background-color: pink;
-    border: 1px solid gray;
-    border-radius: 15px 15px 0 0;
+  margin-top: 20px;
+  background-color: pink;
+  border: 1px solid gray;
+  border-radius: 15px 15px 0 0;
+}
+
+.display-none {
+  display: none;
 }
