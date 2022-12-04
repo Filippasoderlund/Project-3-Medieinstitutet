@@ -45,7 +45,7 @@ input {
   right: 10px;
 }
 
-.errorMessage {
+.errorField {
   color: red;
   border: 1px solid red;
   border-radius: 5px;
@@ -64,6 +64,12 @@ footer {
   border-radius: 15px 15px 0 0;
 }
 
-.display-none {
+.display-none,
+.errorField {
   display: none;
+}
+
+#confirmation {
+    border: 2px solid gray;
+    border-radius: 20px;
 }

@@ -1,4 +1,4 @@
-// summa munkar/ filtrering
+// munkar
 
 const donuts = [
   {
@@ -64,7 +64,7 @@ const donuts = [
   },
 ];
 
-//donutsListing = donutHtmlContainer
+
 
 const donutHtmlContainer = document.querySelector("#donutsListing");
 const priceRangeSlider = document.querySelector("#priceRangeSlider");
@@ -72,6 +72,7 @@ const currentRangeValue = document.querySelector("#currentRangeValue");
 const clearCartBtn = document.querySelector("#clearCart");
 const clearFormBtn = document.querySelector("#clearForm");
 const cartHtmlContainer = document.querySelector("#cart");
+
 
 const today = new Date();
 const isFriday = today.getDay() === 5;
@@ -83,6 +84,8 @@ let slownessTimer = setTimeout(stupidCustomerMessage, 1000 * 60 * 15);
 let filteredDonuts = [...donuts];
 let filteredDonutsInPriceRange = [...donuts];
 
+//timer
+
 function stupidCustomerMessage() {
   alert("Du är för långsam på att beställa");
 }
@@ -93,6 +96,8 @@ function getPriceMultiplier() {
   }
   return 1;
 }
+
+//utskrift av munkar 
 
 function printDonuts() {
   donutHtmlContainer.innerHTML = "";
@@ -146,6 +151,8 @@ function decreaseDonutAmount(e) {
   printDonuts();
 }
 
+//specialregler och varukorgsöversikt
+
 function printCartDonuts() {
   cartHtmlContainer.innerHTML = "";
 
@@ -184,6 +191,14 @@ function printCartDonuts() {
     msg += "<p>Måndagsrabatt: 10 % på hela köpet";
   }
 
+  if (donuts.count >= 10 && donuts.discount === false) {
+    donuts.totPrice = Math.round(donuts.totPrice * 0.9);
+    donuts.discount = true;
+  } else if (donuts.count < 10 && donuts.discount === true) {
+    donuts.discount = false;
+  }
+
+
   cartHtmlContainer.innerHTML += `<p>Total sum: ${sum} kr<p>`;
   cartHtmlContainer.innerHTML += `<div>${msg}</div>`;
 
@@ -196,7 +211,10 @@ function printCartDonuts() {
   }
 }
 
+
+
 printDonuts();
+//knapp för att ränsa varukorg
 
 clearCartBtn.addEventListener("click", clearCart);
 
@@ -210,7 +228,7 @@ function clearCart(e) {
 
 printDonuts();
 
-//produktfiltrering
+//produktfiltrering (får ej till det med rätt array )
 
 priceRangeSlider.addEventListener("change", showPrice);
 
@@ -229,155 +247,110 @@ function priceRange() {
   printDonuts();
 }
 
-// kundinfo
+// kundinfo (validering av formuläret, superbasic)
 
 const errorNameField = document.querySelector("#errorNameField");
 
-const generateButton = document.querySelector("#customerinfo");
+const generateButton = document.querySelector("#order");
 const nameField = document.querySelector("#name");
 const streatField = document.querySelector("#streat");
 const postnumberField = document.querySelector("#postnumber");
 const cityField = document.querySelector("#city");
-const codeField = document.querySelector("#code");
 const numberField = document.querySelector("#number");
 const emailField = document.querySelector("#email");
-const ssnField = document.querySelector("#ssn");
-const cardField = document.querySelector("#card");
-const dateField = document.querySelector("#date");
-const yearField = document.querySelector("#year");
-const CVCField = document.querySelector("#CVC");
+
+
 
 let nameIsOk = false;
 let streatIsOk = false;
 let postnumberIsOk = false;
 let cityIsOk = false;
-let codeIsOk = false;
 let numberIsOk = false;
 let emailIsOk = false;
-let ssnIsOk = false;
-let cardIsOk = false;
-let dateIsOk = false;
-let yearIsOk = false;
-let CVCIsOk = false;
+
+
 
 nameField.addEventListener("change", checkName);
 streatField.addEventListener("change", checkStreat);
 postnumberField.addEventListener("change", checkPostnumber);
 cityField.addEventListener("change", checkcity);
-codeField.addEventListener("change", checkcode);
 numberField.addEventListener("change", checkNumber);
 emailField.addEventListener("change", checkEmail);
-ssnField.addEventListener("change", checkSsn);
-cardField.addEventListener("change", checkCard);
-dateField.addEventListener("change", checkDate);
-yearField.addEventListener("change", checkYear);
-CVCField.addEventListener("change", checkCVC);
 
-/**
- * function validateInput(fname, errorField) {
-  let fname = document.getElementById(fname).value;
-  const errorField = document.getElementById(errorField);
 
-  if (fname.length === 0) {
-    errorField.innerHTML = '*';
-    return false;
-  }
 
-  errorField.innerHTML = '';
-  return true;
-}
-
-validateInput('fname', 'errorField');
- * 
- */
-
-function checkCVC() {
-  CVCIsOk = CVCField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
-
-function checkYear() {
-  yearIsOk = yearField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
-
-function checkDate() {
-  dateIsOk = dateField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
-
-function checkCard() {
-  cardIsOk = cardField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
-
-function checkSsn() {
-  ssnIsOk = ssnField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
 
 function checkEmail() {
-  emailIsOk = emailField.value.indexOf(" ") > -1;
+  if(emailField.value.indexOf('@') > -1) {
+    emailIsOk = true;  
+  } else {
+    emailIsOk = false;
+  }
+  console.log('tf', emailIsOk);
   activateGenerateButton();
 }
 
 function checkNumber() {
-  numberIsOk = numberField.value.indexOf(" ") > -1;
-  activateGenerateButton();
-}
-
-function checkcode() {
-  codeIsOk = codeField.value.indexOf(" ") > -1;
+  if (numberField.value >= 0) {
+    numberIsOk = true;
+  } else {
+    numberIsOk = false;
+  }
+  console.log('tf', numberIsOk);
   activateGenerateButton();
 }
 
 function checkcity() {
-  cityIsOk = cityField.value.indexOf(" ") > -1;
+  if(cityField.value.indexOf('') > -1) {
+    cityIsOk = true;  
+  } else {
+    cityIsOk = false;
+  }
+  console.log('tf', cityIsOk);
   activateGenerateButton();
+  
 }
 
 function checkPostnumber() {
-  postnumberIsOk = postnumberField.value.indexOf(" ") > -1;
+  if (postnumberField.value.indexOf('') > -1) {
+    postnumberIsOk = true;
+  } else {
+    postNumberIsOk = false;
+  }
+  console.log('tf', postnumberIsOk);
   activateGenerateButton();
 }
 
 function checkStreat() {
-  if (streatField.value.indexOf(" ") > -1) {
+  if (streatField.value.indexOf('') > -1) {
     streatIsOk = true;
   } else {
     streatIsOk = false;
   }
+  console.log('tf', streatIsOk);
   activateGenerateButton();
 }
 
 function checkName() {
-  if (nameField.value.indexOf(" ") > -1) {
-    nameIsOk = true;
+  if(nameField.value.indexOf(' ') > -1) {
+    nameIsOk = true;  
   } else {
     nameIsOk = false;
-    errorNameField.removeAttribute("hidden", "");
   }
+  console.log('tf', nameIsOk);
   activateGenerateButton();
 }
 
 function activateGenerateButton() {
-  if (
-    nameIsOk &&
+  if (nameIsOk &&
     streatIsOk &&
     postnumberIsOk &&
     cityIsOk &&
-    codeIsOk &&
     numberIsOk &&
-    emailIsOk &&
-    ssnIsOk &&
-    CVCIsOk &&
-    cardIsOk &&
-    dateIsOk &&
-    yearIsOk
-  ) {
-    generateButton.removeAttribute("disabled");
+    emailIsOk) {
+    generateButton.removeAttribute("disabled"); 
   } else {
-    generateButton.setAttribute("disabled", "");
+    generateButton.setAttribute('disabled', ' ');
   }
 }
 
@@ -391,24 +364,28 @@ function clearForm(e) {
   printDonuts(donuts);
 }
 
-//Betalnings metod
+//Betalnings metod och beställningsbekräftelse 
+
 
 const contentBtn1 = document.querySelector("#card");
 const contentBtn2 = document.querySelector("#invoice");
+const contentBtn3 = document.querySelector("#order");
 
 contentBtn1.addEventListener("click", showContent1);
 contentBtn2.addEventListener("click", showContent2);
+contentBtn3.addEventListener("click", showContent3);
 
 function showContent1() {
-  document.querySelector("#payment").classList.add("orange");
-  document.querySelector("#card").classList.add("visible");
-  document.querySelector("#invoice").classList.remove("visible");
+  document.querySelector("#cardpay").classList.remove("display-none");
+  document.querySelector("#invoicepay").classList.add("display-none");
 }
 
 function showContent2() {
-  document.querySelector("#payment").classList.add("yellow");
-  document.querySelector("#card").classList.remove("visible");
-  document.querySelector("#invoice").classList.add("visible");
+  document.querySelector("#invoicepay").classList.remove("display-none");
+  document.querySelector("#cardpay").classList.add("display-none");
 }
 
-//beställnings bekräftelse
+function showContent3() {
+  document.querySelector("#confirmation").classList.remove("display-none");
+}
+
