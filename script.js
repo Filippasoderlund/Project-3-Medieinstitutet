@@ -61,10 +61,8 @@ const donuts = [
     price: 90,
     amount: 0,
     sortSum: 0,
-  },
+  }
 ];
-
-
 
 const donutHtmlContainer = document.querySelector("#donutsListing");
 const priceRangeSlider = document.querySelector("#priceRangeSlider");
